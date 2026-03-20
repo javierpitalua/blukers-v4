@@ -23,13 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import {
   Star,
@@ -39,7 +33,6 @@ import {
   Copy,
   Download,
   Calendar,
-  Send,
   Award,
   Briefcase,
   Clock,
@@ -135,47 +128,68 @@ export function CandidateDetail() {
             <Dialog open={isInviteDialogOpen} onOpenChange={setIsInviteDialogOpen}>
               <DialogTrigger asChild>
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2">
-                  <Send className="w-4 h-4" />
-                  Invite to Apply
+                  <Briefcase className="w-4 h-4" />
+                  Add to job...
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[500px]">
+              <DialogContent className="sm:max-w-[540px]">
                 <DialogHeader>
-                  <DialogTitle>Invite {candidate.name} to Apply</DialogTitle>
+                  <DialogTitle>Add to Job</DialogTitle>
                   <DialogDescription>
-                    Select a job from your active listings and add a personal message to invite this candidate.
+                    Select an active job to add this candidate to.
                   </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="job">Select Job</Label>
-                    <Select value={inviteJob} onValueChange={setInviteJob}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a job..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {jobs.filter(j => j.status === 'active').map((job) => (
-                          <SelectItem key={job.id} value={job.id}>
-                            {job.title} - {job.location}
-                          </SelectItem>
+                <div className="space-y-5 py-4">
+                  <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                    <Avatar className="w-12 h-12">
+                      <AvatarFallback className={`text-base font-bold ${candidate.avatarColor}`}>
+                        {candidate.initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-gray-900">{candidate.name}</p>
+                      <p className="text-sm text-gray-500">{candidate.role} · {candidate.experience} exp.</p>
+                      <div className="flex flex-wrap gap-1.5 mt-1.5">
+                        {candidate.skills.slice(0, 3).map((skill) => (
+                          <Badge key={skill} variant="secondary" className="text-xs bg-slate-200 text-slate-700">
+                            {skill}
+                          </Badge>
                         ))}
-                      </SelectContent>
-                    </Select>
+                      </div>
+                    </div>
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="message">Personal Message (Optional)</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Hi Carlos, I think you'd be a great fit for..."
-                      value={inviteMessage}
-                      onChange={(e) => setInviteMessage(e.target.value)}
-                      className="min-h-[100px]"
-                    />
+                    <Label className="text-sm font-semibold text-gray-700">Select a job</Label>
+                    <RadioGroup value={inviteJob} onValueChange={setInviteJob} className="space-y-2">
+                      {jobs.filter(j => j.status === 'active').map((job) => (
+                        <label
+                          key={job.id}
+                          htmlFor={`job-${job.id}`}
+                          className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                            inviteJob === job.id
+                              ? "border-blue-500 bg-blue-50"
+                              : "border-gray-200 hover:bg-gray-50"
+                          }`}
+                        >
+                          <RadioGroupItem value={job.id} id={`job-${job.id}`} />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-sm text-gray-900">{job.title}</p>
+                            <p className="text-xs text-gray-500">{job.location} · {job.type} · {job.salary}</p>
+                          </div>
+                          <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700 shrink-0">
+                            {job.applicants} applicants
+                          </Badge>
+                        </label>
+                      ))}
+                    </RadioGroup>
                   </div>
                 </div>
                 <DialogFooter>
                   <Button variant="outline" onClick={() => setIsInviteDialogOpen(false)}>Cancel</Button>
-                  <Button onClick={handleSendInvite} disabled={!inviteJob}>Send Invite</Button>
+                  <Button onClick={handleSendInvite} disabled={!inviteJob} className="bg-blue-600 hover:bg-blue-700">
+                    Add to Job
+                  </Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
