@@ -161,28 +161,30 @@ export function CandidateDetail() {
 
                   <div className="space-y-2">
                     <Label className="text-sm font-semibold text-gray-700">Select a job</Label>
-                    <RadioGroup value={inviteJob} onValueChange={setInviteJob} className="space-y-2">
-                      {jobs.filter(j => j.status === 'active').map((job) => (
-                        <label
-                          key={job.id}
-                          htmlFor={`job-${job.id}`}
-                          className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-                            inviteJob === job.id
-                              ? "border-blue-500 bg-blue-50"
-                              : "border-gray-200 hover:bg-gray-50"
-                          }`}
-                        >
-                          <RadioGroupItem value={job.id} id={`job-${job.id}`} />
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-sm text-gray-900">{job.title}</p>
-                            <p className="text-xs text-gray-500">{job.location} · {job.type} · {job.salary}</p>
-                          </div>
-                          <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700 shrink-0">
-                            {job.applicants} applicants
-                          </Badge>
-                        </label>
-                      ))}
-                    </RadioGroup>
+                    <div className="max-h-[240px] overflow-y-auto rounded-lg border border-gray-200 p-2">
+                      <RadioGroup value={inviteJob} onValueChange={setInviteJob} className="space-y-2">
+                        {jobs.filter(j => j.status === 'active').map((job) => (
+                          <label
+                            key={job.id}
+                            htmlFor={`job-${job.id}`}
+                            className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                              inviteJob === job.id
+                                ? "border-blue-500 bg-blue-50"
+                                : "border-gray-200 hover:bg-gray-50"
+                            }`}
+                          >
+                            <RadioGroupItem value={job.id} id={`job-${job.id}`} />
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium text-sm text-gray-900">{job.title}</p>
+                              <p className="text-xs text-gray-500">{job.location} · {job.type} · {job.salary}</p>
+                            </div>
+                            <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700 shrink-0">
+                              {job.applicants} applicants
+                            </Badge>
+                          </label>
+                        ))}
+                      </RadioGroup>
+                    </div>
                   </div>
                 </div>
                 <DialogFooter>
