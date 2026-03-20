@@ -168,9 +168,11 @@ export function Candidates() {
                   Active {candidate.lastActive}
                 </p>
                 <div className="flex gap-2 w-full sm:w-auto">
-                  <Button variant="outline" size="sm" className="w-full sm:w-auto font-semibold">
-                    Profile
-                  </Button>
+                  <a href="/__mockup/preview/blukers/CandidateDetail">
+                    <Button variant="outline" size="sm" className="w-full sm:w-auto font-semibold">
+                      Profile
+                    </Button>
+                  </a>
                   <Button 
                     size="sm" 
                     className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 font-semibold gap-1.5"
