@@ -21,6 +21,7 @@ const pageRoutes: Record<string, string> = {
   candidates: "/__mockup/preview/blukers/Candidates",
   pipeline: "/__mockup/preview/blukers/Pipeline",
   "candidate-detail": "/__mockup/preview/blukers/CandidateDetail",
+  "job-detail": "/__mockup/preview/blukers/JobDetail",
 };
 
 const navItems = [

@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { AppLayout } from "./_shared/AppLayout";
 import { jobs } from "./_shared/mockData";
 import type { Job } from "./_shared/mockData";
-import { Search, Plus, MoreVertical, Edit2, Archive, GitBranch, Filter } from "lucide-react";
+import { Search, Plus, MoreVertical, Edit2, Archive, GitBranch, Filter, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -141,7 +141,9 @@ export function Jobs() {
                   filteredJobs.map((job) => (
                     <tr key={job.id} className="hover:bg-slate-50/50 transition-colors group">
                       <td className="px-6 py-4">
-                        <div className="font-medium text-slate-900">{job.title}</div>
+                        <a href="/__mockup/preview/blukers/JobDetail" className="font-medium text-slate-900 hover:text-blue-600 transition-colors">
+                          {job.title}
+                        </a>
                         <div className="text-slate-500 text-xs mt-1">{job.type} • {job.salary}</div>
                         <div className="text-slate-400 text-xs mt-0.5">Posted {job.postedDate}</div>
                       </td>
@@ -173,13 +175,21 @@ export function Jobs() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end" className="w-40">
+                            <DropdownMenuItem asChild className="cursor-pointer">
+                              <a href="/__mockup/preview/blukers/JobDetail">
+                                <Eye className="w-4 h-4 mr-2" />
+                                View Details
+                              </a>
+                            </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleEdit(job)} className="cursor-pointer">
                               <Edit2 className="w-4 h-4 mr-2" />
                               Edit Job
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer">
-                              <GitBranch className="w-4 h-4 mr-2" />
-                              View Pipeline
+                            <DropdownMenuItem asChild className="cursor-pointer">
+                              <a href="/__mockup/preview/blukers/Pipeline">
+                                <GitBranch className="w-4 h-4 mr-2" />
+                                View Pipeline
+                              </a>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600">
                               <Archive className="w-4 h-4 mr-2" />
