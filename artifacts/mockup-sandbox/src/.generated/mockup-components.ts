@@ -6,5 +6,6 @@ export const modules: ModuleMap = {
   "./components/mockups/blukers/Dashboard.tsx": () => import("../components/mockups/blukers/Dashboard.tsx"),
   "./components/mockups/blukers/JobDetail.tsx": () => import("../components/mockups/blukers/JobDetail.tsx"),
   "./components/mockups/blukers/Jobs.tsx": () => import("../components/mockups/blukers/Jobs.tsx"),
+  "./components/mockups/blukers/Login.tsx": () => import("../components/mockups/blukers/Login.tsx"),
   "./components/mockups/blukers/Pipeline.tsx": () => import("../components/mockups/blukers/Pipeline.tsx")
 };

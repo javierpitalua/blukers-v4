@@ -103,8 +103,10 @@ Utility scripts package. Each script is a `.ts` file in `src/` with a correspond
 
 All mockup pages live in `artifacts/mockup-sandbox/src/components/mockups/blukers/`:
 
+- **Login** — Split-panel login page with branded left panel, email/password form, Google auth button, password recovery dialog with success state, links to Dashboard on sign-in
 - **Dashboard** — Overview with key metrics (Active Jobs, Total Candidates, Pending Interviews, Offers Extended), quick actions, top jobs, and recent activity feed
-- **Jobs** — Job listings table with search/filter, status badges, create/edit job modal dialog
+- **Jobs** — Job listings table with search/filter, status badges, create/edit job modal dialog, dropdown links to JobDetail and Pipeline
+- **JobDetail** — Single job view with breadcrumb nav, metric cards, pipeline breakdown bar, candidates table with stage badges/ratings, job description tab
 - **Candidates** — Candidate pool grid with search/filter, candidate cards showing skills/rating/availability, "Invite to Job" dialog
 - **CandidateDetail** — Full candidate profile with experience timeline, skills, certifications, contact info, application history, recruiter notes, and "Invite to Apply" dialog
 - **Pipeline** — Kanban board with drag-and-drop candidate cards between hiring stages (Applied → Screening → Interview → Skills Assessment → Offer), job selector dropdown, candidate action menus
