@@ -94,3 +94,32 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
+
+## Blukers — Design Mockups
+
+**Blukers** is a multitenant job posting application for blue-collar/construction workforce recruitment. The design is built as mockup components in the mockup sandbox.
+
+### Pages
+
+All mockup pages live in `artifacts/mockup-sandbox/src/components/mockups/blukers/`:
+
+- **Dashboard** — Overview with key metrics (Active Jobs, Total Candidates, Pending Interviews, Offers Extended), quick actions, top jobs, and recent activity feed
+- **Jobs** — Job listings table with search/filter, status badges, create/edit job modal dialog
+- **Candidates** — Candidate pool grid with search/filter, candidate cards showing skills/rating/availability, "Invite to Job" dialog
+- **CandidateDetail** — Full candidate profile with experience timeline, skills, certifications, contact info, application history, recruiter notes, and "Invite to Apply" dialog
+- **Pipeline** — Kanban board with drag-and-drop candidate cards between hiring stages (Applied → Screening → Interview → Skills Assessment → Offer), job selector dropdown, candidate action menus
+
+### Shared Components
+
+Shared layout components live in `blukers/_shared/`:
+- `AppLayout.tsx` — Main layout with sidebar + topbar + content area
+- `Sidebar.tsx` — Navigation sidebar with Blukers branding
+- `Topbar.tsx` — Top bar with tenant name, search, notifications, user menu
+- `mockData.ts` — All mock data (jobs, candidates, pipeline stages)
+
+### Design Notes
+
+- Design only — no database integration or server-side code
+- Uses Tailwind CSS + shadcn/ui components
+- Blue accent color scheme with dark slate sidebar
+- Construction/blue-collar workforce domain with realistic mock data
