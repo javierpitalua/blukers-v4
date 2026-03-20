@@ -15,6 +15,14 @@ interface SidebarProps {
   onToggle?: () => void;
 }
 
+const pageRoutes: Record<string, string> = {
+  dashboard: "/__mockup/preview/blukers/Dashboard",
+  jobs: "/__mockup/preview/blukers/Jobs",
+  candidates: "/__mockup/preview/blukers/Candidates",
+  pipeline: "/__mockup/preview/blukers/Pipeline",
+  "candidate-detail": "/__mockup/preview/blukers/CandidateDetail",
+};
+
 const navItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "jobs", label: "Jobs", icon: Briefcase },
@@ -43,10 +51,12 @@ export function Sidebar({ activePage, collapsed, onToggle }: SidebarProps) {
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activePage === item.id;
+          const href = pageRoutes[item.id];
           return (
-            <button
+            <a
               key={item.id}
-              className={`flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+              href={href}
+              className={`flex items-center gap-3 w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-colors no-underline ${
                 isActive
                   ? "bg-blue-600 text-white"
                   : "text-slate-300 hover:bg-slate-800 hover:text-white"
@@ -54,7 +64,7 @@ export function Sidebar({ activePage, collapsed, onToggle }: SidebarProps) {
             >
               <Icon className="w-5 h-5 shrink-0" />
               {!collapsed && <span>{item.label}</span>}
-            </button>
+            </a>
           );
         })}
       </nav>
