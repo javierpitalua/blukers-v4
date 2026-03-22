@@ -6,6 +6,7 @@ import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard";
 import Jobs from "@/pages/Jobs";
 import JobDetail from "@/pages/JobDetail";
+import JobEdit from "@/pages/JobEdit";
 import Candidates from "@/pages/Candidates";
 import CandidateDetail from "@/pages/CandidateDetail";
 import Pipeline from "@/pages/Pipeline";
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/jobs" component={Jobs} />
+      <Route path="/jobs/:id/edit">{(params) => <JobEdit id={params.id} />}</Route>
       <Route path="/jobs/:id">{(params) => <JobDetail id={params.id} />}</Route>
       <Route path="/candidates" component={Candidates} />
       <Route path="/candidates/:id">{(params) => <CandidateDetail id={params.id} />}</Route>

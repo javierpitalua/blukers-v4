@@ -73,7 +73,7 @@ export default function JobDetail({ id }: { id?: string }) {
             <p className="text-sm text-gray-600 max-w-2xl">{job.description}</p>
           </div>
           <div className="flex gap-2 shrink-0">
-            <Button variant="outline" className="gap-2"><Edit2 className="w-4 h-4" />Edit</Button>
+            <Link href={`/jobs/${job.id}/edit`}><Button variant="outline" className="gap-2"><Edit2 className="w-4 h-4" />Edit</Button></Link>
             <Link href="/pipeline"><Button variant="outline" className="gap-2"><GitBranch className="w-4 h-4" />Pipeline</Button></Link>
           </div>
         </div>
