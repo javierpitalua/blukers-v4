@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Blukers"
+version = "1.0.0"
+id = "artifacts/blukers"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19114
+
+[services.development]
+run = "pnpm --filter @workspace/blukers run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/blukers", "run", "build" ]
+publicDir = "artifacts/blukers/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19114"
+BASE_PATH = "/"

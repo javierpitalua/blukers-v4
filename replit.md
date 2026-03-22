@@ -95,33 +95,39 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
 
-## Blukers — Design Mockups
+## Blukers — Job Posting Web Application
 
-**Blukers** is a multitenant job posting application for blue-collar/construction workforce recruitment. The design is built as mockup components in the mockup sandbox.
+**Blukers** is a multitenant job posting application for blue-collar/construction workforce recruitment. Built as a client-side React web app with mock data (no server-side code).
 
-### Pages
+### Artifact: `artifacts/blukers` (`@workspace/blukers`)
 
-All mockup pages live in `artifacts/mockup-sandbox/src/components/mockups/blukers/`:
+React + Vite web app at previewPath `/`. Uses wouter for routing, Tailwind CSS + shadcn/ui for design.
 
-- **Login** — Split-panel login page with branded left panel, email/password form, Google auth button, password recovery dialog with success state, links to Dashboard on sign-in
-- **Dashboard** — Overview with key metrics (Active Jobs, Total Candidates, Pending Interviews, Offers Extended), quick actions, top jobs, and recent activity feed
-- **Jobs** — Job listings table with search/filter, status badges, create/edit job modal dialog, dropdown links to JobDetail and Pipeline
-- **JobDetail** — Single job view with breadcrumb nav, metric cards, pipeline breakdown bar, candidates table with stage badges/ratings, job description tab
-- **Candidates** — Candidate pool grid with search/filter, candidate cards showing skills/rating/availability, "Invite to Job" dialog
-- **CandidateDetail** — Full candidate profile with experience timeline, skills, certifications, contact info, application history, recruiter notes, and "Invite to Apply" dialog
-- **Pipeline** — Kanban board with drag-and-drop candidate cards between hiring stages (Applied → Screening → Interview → Skills Assessment → Offer), job selector dropdown, candidate action menus
+### Routes
 
-### Shared Components
+- `/` → redirects to `/login`
+- `/login` — Split-panel login with Google auth, email/password, password recovery dialog
+- `/dashboard` — Metrics overview, quick actions, top jobs, recent activity
+- `/jobs` — Job listings table with search/filter, create/edit modal
+- `/jobs/:id` — Job detail with breadcrumbs, metrics, pipeline breakdown, candidates table, description tab
+- `/candidates` — Candidate pool grid with filters, invite-to-job dialog
+- `/candidates/:id` — Candidate profile with experience, skills, certifications, contact info, notes
+- `/pipeline` — Kanban board with drag-and-drop between hiring stages
+- `/settings` — Company info, account settings, notification preferences
 
-Shared layout components live in `blukers/_shared/`:
-- `AppLayout.tsx` — Main layout with sidebar + topbar + content area
-- `Sidebar.tsx` — Navigation sidebar with Blukers branding
-- `Topbar.tsx` — Top bar with tenant name, search, notifications, user menu
-- `mockData.ts` — All mock data (jobs, candidates, pipeline stages)
+### Key Files
 
-### Design Notes
+- `src/App.tsx` — Route definitions with wouter
+- `src/data/mockData.ts` — All mock data (jobs, candidates, pipeline stages) with TypeScript interfaces
+- `src/components/layout/` — AppLayout, Sidebar (wouter navigation), Topbar
+- `src/pages/` — All page components (Login, Dashboard, Jobs, JobDetail, Candidates, CandidateDetail, Pipeline, Settings)
 
-- Design only — no database integration or server-side code
-- Uses Tailwind CSS + shadcn/ui components
-- Blue accent color scheme with dark slate sidebar
-- Construction/blue-collar workforce domain with realistic mock data
+### Design
+
+- Blue accent (`blue-600`), dark slate sidebar (`slate-900`), white content area
+- Tailwind CSS + shadcn/ui components
+- Client-side only — all data from `src/data/mockData.ts`
+
+### Design Mockups (original)
+
+Original design mockups still exist in `artifacts/mockup-sandbox/src/components/mockups/blukers/` for reference.
